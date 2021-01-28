@@ -1,14 +1,16 @@
 import Axios from 'axios';
 const config = require('../config.json');
-const timeStamp = Date.now();
 const Cryptojs = require('crypto-js');
-const hasher = Cryptojs.MD5(`${timeStamp} + ${config.privateKey} + ${config.publicKey}`).toString();
+var timeStamp = Date.now().toString();
+var finalString = timeStamp.concat(config.privateKey, config.publicKey);
+var hasher = Cryptojs.MD5(finalString).toString();
 const instance = Axios.create({
   baseURL: 'http://gateway.marvel.com/v1/public/',
   params: {
     'apikey': `${config.publicKey}`,
-    'ts': '1611867032354',
-    'hash': '78c66b6ef64507b22be915c9a4357dac'
+    'ts': timeStamp,
+    'hash': hasher
   }
 });
+console.log(hasher, 1611870882452);
 export default instance;
