@@ -9,7 +9,7 @@ class App extends React.Component {
     }
     this.getRandomChars = this.getRandomChars.bind(this);
   }
-  getRandomChars (name) {
+  getRandomChars () {
     MarvelAPI.get('/characters', {
       params: {
         name: "Charles Xavier"
@@ -18,8 +18,9 @@ class App extends React.Component {
       console.log(this.state.team);
     })
       .then((result) => {
+        var name = result.data.data.results[0].name;
         this.setState({
-          team: result.data
+          team: name
         })
       })
       .catch((err) => {
@@ -32,7 +33,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello From App!</h1>
+        <h1>{this.state.team}</h1>
       </div>
     )
   }
