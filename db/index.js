@@ -11,12 +11,15 @@ const db = mongoose.connect(mongoURI)
   .catch((err) => {
     console.log('Failed to connect!', err);
   })
+const characterSchema = new mongoose.Schema({
+  name: String,
 
+});
 const profileSchema = new mongoose.Schema({
   userName: String,
   password: String,
   email: String,
-  
+  favorites: [characterSchema]
 });
 
   module.exports = db;

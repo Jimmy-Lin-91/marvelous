@@ -12,5 +12,5 @@ const instance = Axios.create({
     'hash': hasher
   }
 });
-console.log(hasher, 1611870882452);
+
 export default instance;
